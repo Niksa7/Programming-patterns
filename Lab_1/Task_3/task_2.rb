@@ -7,9 +7,16 @@ def min_arr(array)
 end
 
 def first_position(array)
-  while array[i] < 0
-
+  ind = 0
+  i = 0
+  while i < array.length
+    if array[i] > 0
+      ind = i
+      return ind
+    end
+    i += 1
   end
+  ind
 end
 
 method = ARGV[0]
