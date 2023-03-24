@@ -5,7 +5,7 @@ end
 
 # Дан целочисленный массив и интервал a..b. Найти кол-во элементов в интервале.
 def inter_between_max(array, interval)
-  array.count {|el| el >= interval[0] && el <= interval[1]}
+  array.count {|el| el > interval[0] && el < interval[1]}
 end
 
 # Дан целочисленный массив. Найти количество элементов между первым и последним минимальным.
@@ -21,6 +21,12 @@ def between_first_and_last_min(array)
   end
 end
 
+# Дан целочисленный массив и отрезок a..b. Найти кол-во элементов принадлежащих отрезку.
+def num_of_segment_el(array, interval)
+  array.count {|el| el >= interval[0] && el <= interval[1]}
+end
+
+
 puts "Введите массив: "
 array = gets.chomp.split(' ').map(&:to_i)
 puts "Массив #{array}"
@@ -29,7 +35,7 @@ puts "Выберете метод:
 2: Найти индекс минимального элемента;
 14: Найти кол-во элементов в интервале;
 26: Найти количество элементов между первым и последним минимальным;
-38: ;
+38: Найти кол-во элементов принадлежащих отрезку;
 50: .
 "
 method = gets.chomp.to_i
@@ -44,6 +50,10 @@ when 14
   puts "Найти кол-во элементов в интервале: #{inter_between_max(array, interval)}"
 when 26
   puts "Количество элементов между первым и последним минимальным: #{between_first_and_last_min(array)}"
+when 38
+  puts "Введите интервал: "
+  interval = gets.chomp.split(' ').map(&:to_i)
+  puts "Количество элементов принадлежащих отрезку: #{num_of_segment_el(array, interval)}"
 else
   puts "Нет такого метода"
 end
