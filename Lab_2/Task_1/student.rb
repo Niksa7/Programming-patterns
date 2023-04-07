@@ -1,6 +1,6 @@
 class Student
 
-  def initialize(surname: , name: , lastname: , id: nil, phone: nil, telegram: nil, email: nil, git: nil)
+  def initialize(surname , name , lastname , id: nil, phone: nil, telegram: nil, email: nil, git: nil)
     @surname = surname
     @name = name
     @lastname = lastname
@@ -77,5 +77,8 @@ class Student
     @git = git
   end
 
+  def info
+    puts "Фамилия: #{surname}\nИмя: #{name}\nОтчество: #{lastname}\nID: #{id}\nТелефон: #{phone}\nТелеграм:#{telegram}\nПочта: #{email}\nGit: #{git}\n"
+  end
 
 end
