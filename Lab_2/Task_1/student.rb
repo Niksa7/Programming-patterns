@@ -10,6 +10,8 @@ class Student
     @telegram = attribut[:telegram]
     @email = attribut[:email]
     @git = attribut[:git]
+
+    validate
   end
   #Валидация
   def self.valid_name?(value)
@@ -33,20 +35,30 @@ class Student
     @phone = value
   end
   def telegram=(value)
-    raise ArgumentError, "Недопустимый формат" unless self.class.valid_telegram?(value)
+    raise ArgumentError, "Недопустимый формат telegram" unless self.class.valid_telegram?(value)
     @telegram = value
   end
   def email=(value)
-    raise ArgumentError, "Недопустимый формат" unless self.class.valid_email?(value)
+    raise ArgumentError, "Недопустимый формат email" unless self.class.valid_email?(value)
     @email = value
   end
   def git=(value)
-    raise ArgumentError, "Недопустимый формат" unless self.class.valid_git?(value)
+    raise ArgumentError, "Недопустимый формат git" unless self.class.valid_git?(value)
     @git = value
   end
   #Информация об объекте
   def to_s
     puts "Фамилия: #{surname}\nИмя: #{name}\nОтчество: #{lastname}\nID: #{id}\nТелефон: #{phone}\nТелеграм:#{telegram}\nПочта: #{email}\nGit: #{git}\n"
   end
-
+  #Метод validate
+  def validate
+    validate_git
+    validate_contact
+  end
+  def validate_git
+    raise ArgumentError, "Недопустимый формат git" unless self.class.valid_git?(@git)
+  end
+  def validate_contact
+    raise ArgumentError, "Должно быть предоставлено хотя бы одно средство связи" if self.class.valid_phone?(@phone) && self.class.valid_telegram?(@telegram) && self.class.valid_email?(@email)
+  end
 end
