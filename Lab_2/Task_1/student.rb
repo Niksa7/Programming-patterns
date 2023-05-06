@@ -10,9 +10,16 @@ class Student
     @telegram = attribut[:telegram]
     @email = attribut[:email]
     @git = attribut[:git]
-
     validate
   end
+
+  def set_contacts(email: self.email, telegram: self.telegram, phone: self.phone, git: self.git)
+    @phone = phone if self.class.valid_phone?(phone)
+    @telegram = telegram if self.class.valid_telegram?(telegram)
+    @email = email if self.class.valid_email?(email)
+    @git = git if self.class.valid_git?(git)
+  end
+
   #Валидация
   def self.valid_name?(value)
     value.nil? || value.match?(/^[A-Za-zА-Яа-я]+$/)
@@ -21,13 +28,13 @@ class Student
     phone.nil? || phone.match?(/^((\+7|7|8)+([0-9]){10})$/)
   end
   def self.valid_telegram?(value)
-    value.nil? || value.match?(/^@[A-Za-z0-9_-]+$/)
+    value.nil? || value.match?(/^@([A-Za-z0-9_-])+$/)
   end
   def self.valid_git?(value)
-    value.nil? || value.match?(/\Ahttps:\/\/github\.com\/[a-zA-Z0-9]+\z/)
+    value.nil? || value.match?(/^(https:\/\/)?(www\.)?github\.com\/([a-zA-Z0-9_-]+)\/?$/)
   end
   def self.valid_email?(value)
-    value.nil? || value.match?(/^[A-Za-z0-9]+@(gmail)\.(com)/)
+    value.nil? || value.match?(/^[A-Za-z0-9]+@(gmail|mail|inbox)\.(com|ru)/)
   end
   #Сеттеры
   def phone=(value)

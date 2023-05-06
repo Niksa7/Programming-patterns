@@ -12,6 +12,7 @@ student1 = Student.new(surname='Сорока',
 student2 = Student.new('Епифанцев', 'Всеволод', 'Александрович', id:'2', git:'https://github.com/Vsevolod1817', telegram:'@SevaGrut', email:'seva.epifantsev@gmail.com')
 # student1.phone= '+78925121826'
 student2.phone="+79823784674"
+student2.set_contacts(telegram: "@SevaKrut", phone: "+799999999990")
 student2.to_s
 #Проверка валидации
 puts Student.valid_phone?('+79823784674')
