@@ -20,6 +20,19 @@ class Student
     @git = git if self.class.valid_git?(git)
   end
 
+  # Поиск средства связи для get_info
+  def find_contacts
+    return "phone number: #{@phone}" unless phone.nil?
+    return "email: #{@email}" unless email.nil?
+    return "telegram: #{@telegram}" unless telegram.nil?
+    nil
+  end
+  # Краткая информация о студенте
+  def get_info
+    contacts = "#{find_contacts}"
+    puts "Full name: #{@surname} #{@name[0]}. #{@lastname[0]}., git: #{@git ? @git : '-'}, #{!contacts.empty? ? contacts : '-'}"
+  end
+
   #Валидация
   def self.valid_name?(value)
     value.nil? || value.match?(/^[A-Za-zА-Яа-я]+$/)

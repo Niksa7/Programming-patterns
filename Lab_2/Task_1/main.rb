@@ -14,6 +14,7 @@ student2 = Student.new('Епифанцев', 'Всеволод', 'Алексан
 student2.phone="+79823784674"
 student2.set_contacts(telegram: "@SevaKrut", phone: "+799999999990")
 student2.to_s
+student2.get_info
 #Проверка валидации
 puts Student.valid_phone?('+79823784674')
 puts Student.valid_telegram?('@NekiMan0')
