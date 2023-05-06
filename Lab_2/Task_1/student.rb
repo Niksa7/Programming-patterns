@@ -22,15 +22,15 @@ class Student
 
   # Поиск средства связи для get_info
   def find_contacts
-    return "phone number: #{@phone}" unless phone.nil?
-    return "email: #{@email}" unless email.nil?
-    return "telegram: #{@telegram}" unless telegram.nil?
+    return "#{@phone}" unless phone.nil?
+    return "#{@email}" unless email.nil?
+    return "#{@telegram}" unless telegram.nil?
     nil
   end
   # Краткая информация о студенте
   def get_info
     contacts = "#{find_contacts}"
-    puts "Full name: #{@surname} #{@name[0]}. #{@lastname[0]}., git: #{@git ? @git : '-'}, #{!contacts.empty? ? contacts : '-'}"
+    puts "#{@surname} #{@name[0]}. #{@lastname[0]}., #{@git ? @git : '-'}, #{!contacts.empty? ? contacts : '-'}"
   end
 
   #Валидация
