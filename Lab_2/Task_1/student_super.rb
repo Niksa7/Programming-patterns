@@ -3,8 +3,8 @@ class Student_super
 
   public
 
-  attr_reader :phone, :email, :telegram
-  attr_accessor :id, :git
+  attr_reader :phone, :email, :telegram, :git
+  attr_accessor :id
 
   #Сеттеры
   def phone=(value)
@@ -23,7 +23,6 @@ class Student_super
     raise ArgumentError, "Недопустимый формат git" unless self.class.valid_git?(value)
     @git = value
   end
-
   def set_contacts(email: self.email, telegram: self.telegram, phone: self.phone, git: self.git)
     @phone = phone if self.class.valid_phone?(phone)
     @telegram = telegram if self.class.valid_telegram?(telegram)
