@@ -10,5 +10,4 @@ class Data_list_student_short < Data_list
   def get_data(obj)
     [obj.git, obj.contact, obj.lastname]
   end
-
 end

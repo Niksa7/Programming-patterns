@@ -65,7 +65,11 @@ class Student_super
   end
 
   def validate_contact
-    raise ArgumentError, "Должно быть предоставлено хотя бы одно средство связи" if self.class.valid_phone?(@phone) && self.class.valid_telegram?(@telegram) && self.class.valid_email?(@email)
+    valid_phone = self.class.valid_phone?(@phone)
+    valid_telegram = self.class.valid_telegram?(@telegram)
+    valid_email = self.class.valid_email?(@email)
+
+    raise ArgumentError, "Должно быть предоставлено хотя бы одно средство связи" unless valid_phone || valid_telegram || valid_email
   end
 
 end

@@ -1,5 +1,6 @@
 require_relative 'student'
 require_relative 'student_short'
+require_relative '../Task_3/Data_table'
 
 student1 = Student.new(surname='Сорока',
                        name='Никита',
@@ -29,4 +30,3 @@ puts Student.valid_email?('nikitasoroka228@gmail.com')
 # Student_short двумя способами через объект родительского класса(1) и через id и строки с кр. инфой(2)
 student3 = Student_short.from_object(student2)
 student3 = Student_short.new(2, student2.get_info)
-
