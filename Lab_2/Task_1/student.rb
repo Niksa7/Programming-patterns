@@ -45,4 +45,17 @@ class Student < Student_super
   def to_s
     puts "Фамилия: #{surname}\nИмя: #{name}\nОтчество: #{lastname}\nID: #{id}\nТелефон: #{phone}\nТелеграм:#{telegram}\nПочта: #{email}\nGit: #{git}\n"
   end
+  def to_hash
+    info_hash = {}
+    %i[lastname name surname id phone telegram email git].each do |field|
+      info_hash[field] = send(field) unless send(field).nil?
+    end
+    info_hash
+  end
+  def self.from_hash(hash)
+    last_name = hash.delete(:last_name)
+    first_name = hash.delete(:first_name)
+    surname = hash.delete(:surname)
+    Student.new(last_name, first_name, surname, **hash)
+  end
 end

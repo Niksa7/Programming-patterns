@@ -23,4 +23,8 @@ class Data_list
   def get_data
     raise NotImplementedError, "Этот метод реализовывается в подклассах"
   end
+
+  def replace_data(data)
+    self.data = data.dup
+  end
 end

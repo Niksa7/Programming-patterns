@@ -1,15 +1,17 @@
 require_relative 'Students_list_JSON'
+require_relative 'Students_list_YAML'
+require_relative 'student_list_super'
 
 # Создаем объект класса StudentsListJSON, указывая путь к файлу
 file_path = File.expand_path('students_set.json')
 puts(file_path)
-students_list = StudentsListJSON.new(file_path)
+students_list = StudentListJSON.new()
 
 # Чтение данных из JSON-файла
 students = students_list.read_all
 puts "Данные из JSON-файла:"
 students.each do |student|
-  puts "ID: #{student.id}, Имя: #{student.name}, Возраст: #{student.age}"
+  puts "ID: #{student.id}, Имя: #{student.name}, гит: #{student.git}"
 end
 
 # Модификация данных
