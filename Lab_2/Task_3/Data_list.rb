@@ -1,30 +1,50 @@
-class Data_list
-  attr_reader :data
+class DataList
 
   # private_class_method :new
 
-  def initialize(*data)
-    @data = data
-    @sum_of_selected = []
+  attr_writer :objects_list
+
+  # конструктор
+  def initialize(objects_list)
+    self.objects_list = objects_list
+    self.selected_objects = []
   end
 
-  def select(number)
-    @sum_of_selected << @data[number]
+  # добавить id в выборку
+  def select(*numbers)
+    selected_objects.append(*numbers)
   end
 
-  def get_selected # Массив идентификаторов элементов sum_of_selected
-    @sum_of_selected.map{|element| element.id}
+  # очистить массив выборки
+  def clear_select
+    self.selected_objects = []
   end
 
-  def get_names
-    raise NotImplementedError, "Этот метод реализовывается в подклассах"
+  #массив id выделенных элементов
+  def get_select
+    selected_objects.inject([]) {|res, index| res<<objects_list[index].id}
   end
 
-  def get_data
-    raise NotImplementedError, "Этот метод реализовывается в подклассах"
+  def clear_selected
+    self.selected_objects = []
+  end
+  # применение паттерна Шаблон
+  def get_names; end
+
+  def get_data;
   end
 
-  def replace_data(data)
-    self.data = data.dup
+  def replace_objects(objects_list)
+    self.objects_list = objects_list.dup
+  end
+
+  protected
+  attr_reader :objects_list
+  attr_accessor :selected_objects
+
+
+  # метод необходимо переопределять у наследников
+  def get_fields(object)
+    []
   end
 end
