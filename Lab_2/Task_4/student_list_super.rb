@@ -8,7 +8,6 @@ class StudentListBase
     self.cur_id = 1
     self.data_type = data_type
   end
-
   # загрузка из файла
   def load_from_file(file_path)
     list = data_type.str_to_list(File.read(file_path))
@@ -35,8 +34,7 @@ class StudentListBase
   #полуение n элементов page страницы
   def get_k_n_student_short_list(page, n, data_list)
     page_list = students[(page-1)*n, n].map{|st| Student_short.from_object(st)}
-    return Data_list_student_short.new(page_list) if data_list.nil?
-    data_list.replace_data(page_list)
+    return DataListStudentShort.new(page_list) if data_list.nil?
     data_list
   end
 

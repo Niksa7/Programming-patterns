@@ -14,6 +14,14 @@ class Student_short < Student_super
     new(student.id, student.get_info)
   end
 
+  def to_s
+    result = "full_name: " + full_name
+    result += "\n" + "id=#{id} " unless id.nil?
+    result+= "\n" + "git: #{git}" unless git.nil?
+    result += "\n" + "contact: #{contact}" unless contact.nil?
+    result
+  end
+
   private
 
   def parse_info(info)
