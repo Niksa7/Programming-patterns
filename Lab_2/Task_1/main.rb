@@ -127,3 +127,9 @@ puts "Кол-во студентов yaml: #{stud_list.student_count}"
 # stud_list_yaml.save_to_file('D:/RubyMine Projects/Programming-patterns/Lab_2/Task_4/students_yaml.yaml')
 # stud_list_yaml.load_from_file('D:/RubyMine Projects/Programming-patterns/Lab_2/Task_4/students_yaml.yaml')
 # puts "Кол-во студентов yaml: #{stud_list_json.student_count}"
+
+puts '//////////////'
+puts 'Unit-tests'
+
+student15 = Student.from_hash(last_name: "Алексеевич", first_name: "Никита", surname: "Сорока")
+student15_new = student15.to_hash

@@ -27,6 +27,18 @@ class Student < Student_super
   def self.valid_name?(value)
     value.nil? || value.match?(/^[A-Za-zА-Яа-я]+$/)
   end
+  def self.valid_phone?(phone)
+    phone.nil? || phone.match?(/^((\+7|7|8)+([0-9]){10})$/)
+  end
+  def self.valid_telegram?(value)
+    value.nil? || value.match?(/^@([A-Za-z0-9_-])+$/)
+  end
+  def self.valid_git?(value)
+    value.nil? || value.match?(/^(https:\/\/)?(www\.)?github\.com\/([a-zA-Z0-9_-]+)\/?$/)
+  end
+  def self.valid_email?(value)
+    value.nil? || value.match?(/^[A-Za-z0-9]+@(gmail|mail|inbox)\.(com|ru)/)
+  end
   # Сеттеры
   def surname=(value)
     raise ArgumentError, "Недопустимый формат телефонного номера" unless self.class.valid_name?(value)
