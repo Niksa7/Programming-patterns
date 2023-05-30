@@ -20,6 +20,20 @@ class DataList
     self.selected_objects = []
   end
 
+  # получить выделенные объекты(массив)
+  # def get_selected
+  #   return [] if selected_objects.empty?
+  #
+  #   selected_id_list = []
+  #   selected_objects.each do |num|
+  #     selected_id_list.append(objects_list[num].id)
+  #   end
+  #   selected_id_list
+  # end
+  # def get_select
+  #   objects_list[selected_objects].id
+  # end
+
   #массив id выделенных элементов
   def get_select
     selected_objects.inject([]) {|res, index| res<<objects_list[index].id}
