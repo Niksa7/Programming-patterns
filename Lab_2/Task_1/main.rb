@@ -6,6 +6,10 @@ require_relative '../Task_3/Data_list'
 require_relative '../Task_4/student_list_super'
 require_relative '../Task_4/Students_list_JSON'
 require_relative '../Task_4/Students_list_YAML'
+require_relative '../Lab_3/studentsDB'
+require_relative '../Lab_3/students_db_adapter'
+
+require 'sqlite3'
 
 student1 = Student.new(surname='Сорока',
                        name='Никита',
@@ -133,3 +137,21 @@ puts 'Unit-tests'
 
 student15 = Student.from_hash(last_name: "Алексеевич", first_name: "Никита", surname: "Сорока")
 student15_new = student15.to_hash
+
+puts '//////////////'
+puts 'SQL'
+
+# тестирование
+db = DB.new
+student = Student.new('Abramov', 'Mihail', 'Petrovich', phone: '+78925121826' )
+db.add_student(student)
+puts db.student_by_id(3)
+puts db.student_count
+
+# выполняем SELECT-запрос
+results = client.query('SELECT * FROM students')
+
+# выводим результаты на экран
+results.each do |row|
+  puts row.inspect
+end
