@@ -3,7 +3,7 @@ class DB
   private_class_method :new
   @@instance = nil
   def initialize
-    @db = SQLite3::Database.new 'D:\RubyMine Projects\Programming-patterns\Lab_2\db_student.sql'
+    @db = SQLite3::Database.open 'D:\RubyMine Projects\Programming-patterns\Lab_2\db_student.sql'
     @db.results_as_hash=true
   end
 
@@ -13,9 +13,9 @@ class DB
     end
     @@instance
   end
-
+  # выполняем переданный запрос к базе данных.
   def execute(query, *args)
-    @db.execute(query,*args)
+    @db.execute(query, *args)
   end
 
   def results_as_hash=(bool)
