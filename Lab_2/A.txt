@@ -1,3 +1,13 @@
+# Важное -------------
+# db = SQLite3::Database.open "db_student.db"
+# db.execute("insert into students(surname, name, lastname, phone, telegram, email, git) values (?, ?, ?, ?, ?, ?, ?)", ['Алеск', 'Алеша', 'Попович', '+79183451223', nil, 'popovich@mail.ru', '@ivan_popovich'])
+#
+# db.execute( "select * from students" ) do |row|
+#   p row
+# end
+
+
+
 TASK1____________________________________________________Вопросы:
 # #
 # #     a.

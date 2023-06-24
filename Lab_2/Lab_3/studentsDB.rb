@@ -3,7 +3,7 @@ class DB
   private_class_method :new
   @@instance = nil
   def initialize
-    @db = SQLite3::Database.open 'D:\RubyMine Projects\Programming-patterns\Lab_2\db_student.sql'
+    @db = SQLite3::Database.open "db_student.db"
     @db.results_as_hash=true
   end
 

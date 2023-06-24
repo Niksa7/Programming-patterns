@@ -2,7 +2,7 @@ require_relative '../Task_1/student'
 require_relative '../Task_1/student_short'
 require_relative '../Task_3/Data_list_student_short'
 require_relative 'studentsDB'
-class StudentListDbAdapter
+class StudentListDb
 
   #стандартный коструктор
   def initialize
@@ -11,15 +11,16 @@ class StudentListDbAdapter
 
   # получить студента по id
   def get_student_by_id(student_id)
-    hash = db.execute('SELECT * FROM students WHERE id = ?', student_id).first
-    return nil if hash.nil?
-    Student.new(hash[0], hash[1], hash[2], **hash.transform_keys(&:to_sym))
+    student_data = db.execute('SELECT * FROM students WHERE id = ?', student_id).first
+    return nil if student_data.nil?
+
+    Student.new(student_data['surname'], student_data['name'], student_data['lastname'], id: student_data['id'], phone: student_data['phone'], telegram: student_data['telegram'], email: student_data['email'], git: student_data['git'])
   end
 
 
   #добавление студента
   def add_student(student)
-    db.execute('insert into students (first_name, last_name, second_name, phone, telegram, email, git) VALUES (?, ?, ?, ?, ?, ?, ?)', *student_fields(student)).first
+    db.execute('insert into students (surname, name, lastname, phone, telegram, email, git) VALUES (?, ?, ?, ?, ?, ?, ?)', *student_fields(student)).first
   end
 
   #удаление студента по id
@@ -29,7 +30,7 @@ class StudentListDbAdapter
 
   #замена студента по id
   def replace_student(student_id, student)
-    db.execute('UPDATE students SET first_name=?, last_name=?, second_name=?, phone=?, telegram=?, email=?, git=? WHERE id=?',*student_fields(student), student_id)
+    db.execute('UPDATE students SET surname=?, name=?, lastname=?, phone=?, telegram=?, email=?, git=? WHERE id=?',*student_fields(student), student_id)
   end
 
   #подсчет количества студентов

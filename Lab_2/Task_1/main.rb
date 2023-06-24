@@ -7,7 +7,7 @@ require_relative '../Task_4/student_list_super'
 require_relative '../Task_4/Students_list_JSON'
 require_relative '../Task_4/Students_list_YAML'
 require_relative '../Lab_3/studentsDB'
-require_relative '../Lab_3/students_db_adapter'
+require_relative '../Lab_3/students_db_list'
 
 require 'sqlite3'
 
@@ -116,12 +116,12 @@ stud_list = StudentListBase.new(json_strategy)
 stud_list.add_student(student4)
 stud_list.add_student(student5)
 stud_list.add_student(student6)
-stud_list.save_to_file('D:/RubyMine Projects/Programming-patterns/Lab_2/Task_4/students.json')
-stud_list.load_from_file('D:/RubyMine Projects/Programming-patterns/Lab_2/Task_4/students.json')
+stud_list.save_to_file('D:/Programming_projects/WEB/JS_Labs/Programming-patterns/Lab_2/Task_4/students.json')
+stud_list.load_from_file('D:/Programming_projects/WEB/JS_Labs/Programming-patterns/Lab_2/Task_4/students.json')
 puts "Кол-во студентов json: #{stud_list.student_count}"
 
 stud_list.data_type = yaml_strategy
-stud_list.save_to_file('D:/RubyMine Projects/Programming-patterns/Lab_2/Task_4/students_strategy_yaml.yaml')
+stud_list.save_to_file('D:/Programming_projects/WEB/JS_Labs/Programming-patterns/Lab_2/Task_4/students_strategy_yaml.yaml')
 puts "Кол-во студентов yaml: #{stud_list.student_count}"
 
 # stud_list_yaml = StudentListBase.new(yaml_strategy)
@@ -139,19 +139,27 @@ student15 = Student.from_hash(last_name: "Алексеевич", first_name: "Н
 student15_new = student15.to_hash
 
 puts '//////////////'
-puts 'SQL'
+puts "SQL\n"
 
 # тестирование
-db = DB.new
-student = Student.new('Abramov', 'Mihail', 'Petrovich', phone: '+78925121826' )
-db.add_student(student)
-puts db.student_by_id(3)
-puts db.student_count
+db = StudentListDb.new
+student = Student.new('Lolov', 'Lol', 'Lolovich', phone: '+78925121825')
+# db.add_student(student)
+# db.replace_student(2, student)
+# db.remove_student(2)
+# Получить объект класса Student по ID
+puts db.get_student_by_id(3)
+# Подсчет количества элементов
+puts "\nКол-во студентов: #{db.student_count}"
 
-# выполняем SELECT-запрос
-results = client.query('SELECT * FROM students')
+# Select запрос
+# Экземпляр объекта DB
+db1 = DB.instance
 
-# выводим результаты на экран
-results.each do |row|
-  puts row.inspect
+# SELECT запрос для получения всех элементов
+result = db1.execute('SELECT * FROM students')
+
+# Вывод
+result.each do |row|
+  puts row
 end

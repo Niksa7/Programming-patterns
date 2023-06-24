@@ -9,6 +9,7 @@ gem 'rubocop'
 gem 'minitest'
 gem 'test-unit'
 gem 'rspec'
+gem 'server'
 group :development, :test do
   gem 'rspec'
 end
